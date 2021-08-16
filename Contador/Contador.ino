@@ -1,76 +1,43 @@
-/*********
-  Rui Santos
-  Complete project details at https://randomnerdtutorials.com  
-*********/
 
-TaskHandle_t Task1;
-TaskHandle_t Task2;
 
-int global1=0;
+#include <esp_task_wdt.h>
+//20 seconds WDT
+#define WDT_TIMEOUT 120
+#define limite_conteo 10
+#define pin 12
+#define RXD2 16
+#define TXD2 17
 
-// LED pins
-const int led1 = 2;
-const int led2 = 4;
+int contador=0;
 
 void setup() {
-  Serial.begin(115200); 
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-
-  //create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0
-  xTaskCreatePinnedToCore(
-                    Task1code,   /* Task function. */
-                    "Task1",     /* name of task. */
-                    10000,       /* Stack size of task */
-                    NULL,        /* parameter of the task */
-                    1,           /* priority of the task */
-                    &Task1,      /* Task handle to keep track of created task */
-                    0);          /* pin task to core 0 */                  
-  delay(500); 
-
-  //create a task that will be executed in the Task2code() function, with priority 1 and executed on core 1
-  xTaskCreatePinnedToCore(
-                    Task2code,   /* Task function. */
-                    "Task2",     /* name of task. */
-                    10000,       /* Stack size of task */
-                    NULL,        /* parameter of the task */
-                    1,           /* priority of the task */
-                    &Task2,      /* Task handle to keep track of created task */
-                    1);          /* pin task to core 1 */
-    delay(500); 
-}
-
-//Task1code: blinks an LED every 1000 ms
-void Task1code( void * pvParameters ){
-  Serial.print("Task1 running on core ");
-  Serial.println(xPortGetCoreID());
-
-  for(;;){
-    digitalWrite(led1, HIGH);
-    delay(1000);
-    digitalWrite(led1, LOW);
-    delay(1000);
-    Serial.println("Tarea1");
-    
-  } 
-}
-
-//Task2code: blinks an LED every 700 ms
-void Task2code( void * pvParameters ){
-  Serial.print("Task2 running on core ");
-  Serial.println(xPortGetCoreID());
-
-  for(;;){
-    digitalWrite(led2, HIGH);
-    delay(700);
-    digitalWrite(led2, LOW);
-    delay(700);
-    Serial.println("Tarea2");
-    Serial.println(global1);
-    global1=1;
-  }
+  Serial.begin(115200);
+  Serial2.begin(115200, SERIAL_8N1, RXD2, TXD2);
+  esp_task_wdt_init(WDT_TIMEOUT, true); //enable panic so ESP32 restarts
+  esp_task_wdt_add(NULL); //add current thread to WDT watch 
+  pinMode(pin, INPUT_PULLUP);
 }
 
 void loop() {
-  
+
+  Serial.println("Iniciando conteo ");
+  while (digitalRead(pin)==0)
+  {
+     delay(50);
+     esp_task_wdt_reset();  
+  };
+
+   while (digitalRead(pin)==1)
+  {
+     delay(50);
+     esp_task_wdt_reset();  
+  };
+  Serial.print("Pin activado ");
+  contador=contador+1;
+
+  if (contador >= limite_conteo){
+      Serial.println("Se envia a THB");
+      Serial2.println(limite_conteo);
+      contador=0;
+  } 
 }
