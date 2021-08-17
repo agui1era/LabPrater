@@ -4,6 +4,7 @@
 #include <ArduinoJson.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
+#define QoS 1
 
 //Serial para conectar con arduino
 #define RXD2 16
@@ -33,7 +34,7 @@ void setup() {
   esp_task_wdt_add(NULL); //add current thread to WDT watch 
   setup_wifi();
   client.setServer(mqtt_server, 1883);
-  client.subscribe("v1/devices/me/telemetry",1);
+  client.subscribe("v1/devices/me/telemetry",QoS);
 }
 
 //Conexión wifi
@@ -64,7 +65,7 @@ void reconnect()
     if (client.connect(mqtt_id,mqtt_user,mqtt_pass)) {
       Serial.println("conectado al server");
       //Topico
-      client.subscribe("v1/devices/me/telemetry",1);
+      client.subscribe("v1/devices/me/telemetry",QoS);
       
     } else {
       Serial.print("RC-");
@@ -89,8 +90,8 @@ void loop() {
     reconnect();
   };
   while (Serial2.available()) {
-    esp_task_wdt_reset();
     contador=Serial2.readString().toInt();
     EnvioMQTT(contador,"contador");
   };
+  esp_task_wdt_reset();
  }

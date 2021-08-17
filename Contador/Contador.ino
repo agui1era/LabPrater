@@ -3,7 +3,7 @@
 #include <esp_task_wdt.h>
 //20 seconds WDT
 #define WDT_TIMEOUT 120
-#define limite_conteo 10
+#define limite_conteo 25
 #define pin 12
 #define RXD2 16
 #define TXD2 17
