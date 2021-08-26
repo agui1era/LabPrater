@@ -16,11 +16,11 @@ void setup() {
   esp_task_wdt_init(WDT_TIMEOUT, true); //enable panic so ESP32 restarts
   esp_task_wdt_add(NULL); //add current thread to WDT watch 
   pinMode(pin, INPUT_PULLUP);
+  Serial.println("Iniciando conteo ");
 }
 
 void loop() {
-
-  Serial.println("Iniciando conteo ");
+ 
   while (digitalRead(pin)==0)
   {
      delay(50);
@@ -32,8 +32,9 @@ void loop() {
      delay(50);
      esp_task_wdt_reset();  
   };
-  Serial.print("Pin activado ");
+  Serial.print("Contador: ");
   contador=contador+1;
+  Serial.println(contador);
 
   if (contador >= limite_conteo){
       Serial.println("Se envia a THB");
