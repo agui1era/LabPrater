@@ -5,17 +5,17 @@ import math
 import psycopg2
 from dateutil.relativedelta import relativedelta
 
-
 #cada sensor tiene un dispositvo mqtt y uno de indicadores
-device_id_mqtt="b3a33100-006b-11ec-ba16-e1db05e491fe"
+device_id_mqtt="aef16d20-fba7-11eb-ba16-e1db05e491fe"
 device_id="b3a33100-006b-11ec-ba16-e1db05e491fe"
-key_var_productos='163'
-
+#key de nombre de la variable
+key_var_productos='161'
+key_var_detenciones='166'
 #definicion del horario del turno 
 hora_inicio="8:00:00"
 hora_termino="17:00:00"
 #el tiempo esperado se usa para realizar el grafico de torta
-tiempo_esperado=1000
+tiempo_esperado=540
 
 def getDB(sql_query):
     try:       
@@ -63,7 +63,6 @@ print(str_hora_inicio_turno)
 print(str_hora_fin_turno)
 
 #Productos totales del dia
-
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 begin_date = end_date
@@ -81,7 +80,6 @@ print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 os.system('curl -v -X POST -d "{\"productos_dia\":'+result_det+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
 
 #Productos x hora
-
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 begin_date = end_date  - relativedelta(seconds=3600)
@@ -99,7 +97,6 @@ print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 os.system('curl -v -X POST -d "{\"productos_hora\":'+result_det+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
 
 #Detenciones
-
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 begin_date = end_date  - relativedelta(seconds=300)
@@ -120,9 +117,7 @@ if result_det == 'None':
 else:
  os.system('curl -v -X POST -d "{\"alarma_detencion\":0}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
 
-
 #Detenciones del dia
-
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
 begin_date = end_date
@@ -131,7 +126,7 @@ print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 print("Tiempos detenciones del día")
 print(str_begin_date)
 print(str_end_date)
-sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_productos+" AND  entity_id='"+device_id+"'"
+sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_detenciones+" AND  entity_id='"+device_id+"'"
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print("Resultado: ")

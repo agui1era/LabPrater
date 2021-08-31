@@ -6,16 +6,16 @@ import psycopg2
 from dateutil.relativedelta import relativedelta
 
 #cada sensor tiene un dispositvo mqtt y uno de indicadores
-device_id_mqtt="b3a33100-006b-11ec-ba16-e1db05e491fe"
+device_id_mqtt="aef16d20-fba7-11eb-ba16-e1db05e491fe"
 device_id="b3a33100-006b-11ec-ba16-e1db05e491fe"
 
 
-key_var_productos='163'
+key_var_productos='161'
 key_var_detenciones='166'
 
 #productos esperados x turno y el tiempo del turno en minutos
-productos_totales_objetivo=10000
-tiempo_esperado=1000
+productos_totales_objetivo=5000
+tiempo_esperado=540
 
 def getDB(sql_query):
     try:       
@@ -74,6 +74,9 @@ result_det=str(getDB(sql_str_det))
 print("cantidad de productos del dia")
 print(result_det)
 
+if result_det == 'None':
+   result_det=0
+
 productos_totales=result_det
 
 #Detencion total dia anterior
@@ -92,6 +95,9 @@ print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print("Detencion en minutos")
 print(result_det)
+
+if result_det == 'None':
+   result_det=0
 
 detenciones_totales=result_det
 
