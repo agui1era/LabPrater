@@ -6,16 +6,12 @@ import psycopg2
 from dateutil.relativedelta import relativedelta
 
 #cada sensor tiene un dispositvo mqtt y uno de indicadores
-device_id_mqtt="aef16d20-fba7-11eb-ba16-e1db05e491fe"
-device_id="b3a33100-006b-11ec-ba16-e1db05e491fe"
-#key de nombre de la variable
+device_id_mqtt_1="aef16d20-fba7-11eb-ba16-e1db05e491fe"
+device_id_mqtt_2="9beb3190-034d-11ec-9cb2-33b63abc84ef"
+device_id_mqtt_3="61e99670-0353-11ec-9cb2-33b63abc84ef"
+
 key_var_productos='161'
-key_var_detenciones='166'
-#definicion del horario del turno 
-hora_inicio="8:00:00"
-hora_termino="17:00:00"
-#el tiempo esperado se usa para realizar el grafico de torta
-tiempo_esperado=540
+
 
 def getDB(sql_query):
     try:       
@@ -55,83 +51,51 @@ def date_to_milis(date_string):
 
     return str(math.trunc(obj_date.timestamp() * 1000))
 
-hora_inicio_turno = datetime.datetime.now()
-str_hora_inicio_turno=hora_inicio_turno.strftime("%d/%m/%Y "+hora_inicio)
-hora_fin_turno = hora_inicio_turno
-str_hora_fin_turno=hora_fin_turno.strftime("%d/%m/%Y "+hora_termino)
-print(str_hora_inicio_turno)
-print(str_hora_fin_turno)
 
-#Productos totales del dia
-end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
-begin_date = end_date
-str_begin_date=begin_date.strftime("%d/%m/%Y 00:00:00")
-print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-print("Tiempos productos por dia")
-print(str_begin_date)
-print(str_end_date)
-sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt+"'"
-print(sql_str_det)
-result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
-print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-os.system('curl -v -X POST -d "{\"productos_dia\":'+result_det+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
-
-#Productos x hora
-end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
-begin_date = end_date  - relativedelta(seconds=3600)
-str_begin_date=begin_date.strftime("%d/%m/%Y %H:%M:%S")
-print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-print("Tiempos productos por hora")
-print(str_begin_date)
-print(str_end_date)
-sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt+"'"
-print(sql_str_det)
-result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
-print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-os.system('curl -v -X POST -d "{\"productos_hora\":'+result_det+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
 
 #Detenciones
 end_date = datetime.datetime.now()
 str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
-begin_date = end_date  - relativedelta(seconds=300)
+begin_date = end_date  - relativedelta(seconds=600)
 str_begin_date=begin_date.strftime("%d/%m/%Y %H:%M:%S")
 print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 print("Tiempos detector detenciones")
 print(str_begin_date)
 print(str_end_date)
-sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt+"'"
+
+
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt_1+"'"
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print("Resultado: ")
 print(result_det)
 print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
 if result_det == 'None':
-  os.system('curl -v -X POST -d "{\"detencion\":5}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
-  os.system('curl -v -X POST -d "{\"alarma_detencion\":1}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
+  os.system('curl -v -X POST -d "{\"alarma_detencion\":1}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
 else:
- os.system('curl -v -X POST -d "{\"alarma_detencion\":0}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
+ os.system('curl -v -X POST -d "{\"alarma_detencion\":0}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
 
-#Detenciones del dia
-end_date = datetime.datetime.now()
-str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
-begin_date = end_date
-str_begin_date=begin_date.strftime("%d/%m/%Y 00:00:00")
-print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-print("Tiempos detenciones del día")
-print(str_begin_date)
-print(str_end_date)
-sql_str_det="SELECT SUM(long_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND ts >="+date_to_milis(str_hora_inicio_turno)+" AND ts <="+date_to_milis(str_hora_fin_turno)+" AND key="+key_var_detenciones+" AND  entity_id='"+device_id+"'"
+
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt_2+"'"
 print(sql_str_det)
 result_det=str(getDB(sql_str_det))
 print("Resultado: ")
 print(result_det)
 print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-os.system('curl -v -X POST -d "{\"detencion_dia\":'+result_det+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
-os.system('curl -v -X POST -d "{\"tiempo_produccion\":'+str(tiempo_esperado-int(result_det))+'}" iot.igromi.com:8080/api/v1/imagina13/telemetry --header "Content-Type:application/json"')
- 
+if result_det == 'None':
+  os.system('curl -v -X POST -d "{\"alarma_detencion2\":1}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
+else:
+ os.system('curl -v -X POST -d "{\"alarma_detencion2\":0}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
+
+
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date)+ " AND key="+key_var_productos+" AND  entity_id='"+device_id_mqtt_3+"'"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+print("Resultado: ")
+print(result_det)
+print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+if result_det == 'None':
+  os.system('curl -v -X POST -d "{\"alarma_detencion3\":1}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
+else:
+ os.system('curl -v -X POST -d "{\"alarma_detencion3\":0}" iot.igromi.com:8080/api/v1/labprater_det/telemetry --header "Content-Type:application/json"')
+
