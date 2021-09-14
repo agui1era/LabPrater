@@ -26,6 +26,7 @@ PubSubClient client(espClient);
 String str;
 char payload[100];
 int contador;
+int dato;
 
 void setup() {
   Serial.begin(115200);
@@ -90,8 +91,13 @@ void loop() {
     reconnect();
   };
   while (Serial2.available()) {
-    contador=Serial2.readString().toInt();
-    EnvioMQTT(contador,"contador");
+    dato=Serial2.read();
+    contador= contador+1;
+    Serial.print("Contador: ");
+    Serial.println(contador);
   };
+  EnvioMQTT(contador,"contador");
+  contador=0;
+  delay(60000);
   esp_task_wdt_reset();
  }

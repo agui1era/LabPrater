@@ -32,13 +32,7 @@ void loop() {
      delay(50);
      esp_task_wdt_reset();  
   };
-  Serial.print("Contador: ");
-  contador=contador+1;
-  Serial.println(contador);
 
-  if (contador >= limite_conteo){
-      Serial.println("Se envia a THB");
-      Serial2.println(limite_conteo);
-      contador=0;
+  Serial.println("Contando..");
+  Serial2.print(0);   
   } 
-}
