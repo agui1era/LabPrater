@@ -16,7 +16,7 @@ const char* password = "wifiiGromi12";
 
 //Definicion MQTT
 const char* mqtt_server = "iot.igromi.com";
-const char* mqtt_id = "labprater3";
+const char* mqtt_id = "labprater1";
 const char* mqtt_user = "labprater";
 const char* mqtt_pass = "imagina12";
 
