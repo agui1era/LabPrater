@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 #cada sensor tiene un dispositvo mqtt y uno de indicadores
 device_id_mqtt_1="aef16d20-fba7-11eb-ba16-e1db05e491fe"
-device_id_mqtt_2="9beb3190-034d-11ec-9cb2-33b63abc84ef"
+device_id_mqtt_2="e02aea50-334d-11ec-8882-4d1456bd87a6"
 device_id_mqtt_3="61e99670-0353-11ec-9cb2-33b63abc84ef"
 
 key_var_productos='161'
