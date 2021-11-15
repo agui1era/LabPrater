@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 url = "http://mes.igromi.com:3000/sensor"
 varName ='contador'
-sensorName='contadorIgromi'
+sensorName='contadoriGromi'
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
 
 def getDB(sql_query):
