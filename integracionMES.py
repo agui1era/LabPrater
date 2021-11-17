@@ -6,7 +6,6 @@ from dateutil.relativedelta import relativedelta
 
 url = "http://mes.igromi.com:3000/sensor"
 varName ='contador'
-sensorName='contadoriGromi'
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
 
 def getDB(sql_query):
@@ -47,6 +46,7 @@ def date_to_milis(date_string):
 
     return str(math.trunc(obj_date.timestamp() * 1000))
 
+sensorName='LabPrater1'
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
 print(sql_str_det)
@@ -65,7 +65,59 @@ produccion=result_det
 headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
 x = {
   "data": [
-    {"id": "1","produccion":produccion,"ts":ts}
+    {"id": "marconi12","produccion":produccion,"ts":ts}
+  ]
+}
+print(x)
+response = requests.post(url, headers=headers, json=x)
+print("Status Code", response.status_code)
+
+
+sensorName='bridge001'
+
+sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+print("Resultado: ")
+print(result_det)
+ts=result_det
+
+sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+print("Resultado: ")
+print(result_det)
+produccion=result_det
+
+x = {
+  "data": [
+    {"id": "marconi3","produccion":produccion,"ts":ts}
+  ]
+}
+print(x)
+response = requests.post(url, headers=headers, json=x)
+print("Status Code", response.status_code)
+
+
+sensorName='LabPrater3'
+
+sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+print("Resultado: ")
+print(result_det)
+ts=result_det
+
+sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+print("Resultado: ")
+print(result_det)
+produccion=result_det
+
+x = {
+  "data": [
+    {"id": "envasadora","produccion":produccion,"ts":ts}
   ]
 }
 print(x)
