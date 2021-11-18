@@ -4,7 +4,7 @@ import math
 import psycopg2
 from dateutil.relativedelta import relativedelta
 
-url = "http://mes.igromi.com:3000/sensor"
+url = "http://mes.igromi.com:33331/sensor"
 varName ='contador'
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
 
