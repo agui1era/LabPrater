@@ -2,11 +2,13 @@ import requests
 import datetime
 import math
 import psycopg2
+import logging
 from dateutil.relativedelta import relativedelta
 
 url = "http://mes.igromi.com:33331/sensor"
 varName ='contador'
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
+logFile='mes.log'
 
 def getDB(sql_query):
     try:       
@@ -46,20 +48,30 @@ def date_to_milis(date_string):
 
     return str(math.trunc(obj_date.timestamp() * 1000))
 
+def write_log(cadena):
+
+    logging.basicConfig(filename=logFile,level=logging.DEBUG)
+
+    end_date = datetime.datetime.now()
+    str_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
+    logging.info(str_date+": "+cadena)
+    print(str_date+": "+cadena)
+
+    return 0
+
+
 sensorName='LabPrater1'
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 ts=result_det
 
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 produccion=result_det
 
 headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
@@ -68,25 +80,22 @@ x = {
     {"id": "marconi12","produccion":produccion,"ts":ts}
   ]
 }
-print(x)
 response = requests.post(url, headers=headers, json=x)
-print("Status Code", response.status_code)
+write_log("Status Code"+ str(response.status_code))
 
 
 sensorName='bridge001'
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 ts=result_det
 
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 produccion=result_det
 
 x = {
@@ -94,25 +103,22 @@ x = {
     {"id": "marconi3","produccion":produccion,"ts":ts}
   ]
 }
-print(x)
 response = requests.post(url, headers=headers, json=x)
-print("Status Code", response.status_code)
+write_log("Status Code"+ str(response.status_code))
 
 
 sensorName='LabPrater3'
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 ts=result_det
 
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts
-print(sql_str_det)
+write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-print("Resultado: ")
-print(result_det)
+write_log("Resultado: "+result_det)
 produccion=result_det
 
 x = {
@@ -120,7 +126,5 @@ x = {
     {"id": "envasadora","produccion":produccion,"ts":ts}
   ]
 }
-print(x)
 response = requests.post(url, headers=headers, json=x)
-print("Status Code", response.status_code)
-
+write_log("Status Code"+ str(response.status_code))
