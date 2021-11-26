@@ -6,6 +6,7 @@ import logging
 from dateutil.relativedelta import relativedelta
 
 url = "http://mes.igromi.com:33331/sensor"
+urlProd="http://labprater.igromi.com:33331/sensor"
 varName ='contador'
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
 logFile='mes.log'
@@ -81,7 +82,10 @@ x = {
     {"id": "marconi12","produccion":produccion,"ts":ts}
   ]
 }
+
 response = requests.post(url, headers=headers, json=x)
+write_log("Status Code"+ str(response.status_code))
+response = requests.post(urlProd, headers=headers, json=x)
 write_log("Status Code"+ str(response.status_code))
 
 
@@ -106,6 +110,8 @@ x = {
 }
 response = requests.post(url, headers=headers, json=x)
 write_log("Status Code"+ str(response.status_code))
+response = requests.post(urlProd, headers=headers, json=x)
+write_log("Status Code"+ str(response.status_code))
 
 
 sensorName='LabPrater3'
@@ -128,4 +134,6 @@ x = {
   ]
 }
 response = requests.post(url, headers=headers, json=x)
+write_log("Status Code"+ str(response.status_code))
+response = requests.post(urlProd, headers=headers, json=x)
 write_log("Status Code"+ str(response.status_code))
