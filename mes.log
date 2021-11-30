@@ -192,3 +192,63 @@ INFO:root:26/11/2021 09:34:07: Status Code200
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
 DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
 INFO:root:26/11/2021 09:34:08: Status Code200
+INFO:root:30/11/2021 18:42:40: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater1') order by ts desc limit 1
+INFO:root:30/11/2021 18:42:41: Resultado: 1638308265824
+INFO:root:30/11/2021 18:42:41: SELECT dbl_v FROM ts_kv WHERE  ts=1638308265824 AND entity_id = (select id from device where name='LabPrater1')
+INFO:root:30/11/2021 18:42:42: Resultado: 0.0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:42: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:43: Status Code200
+INFO:root:30/11/2021 18:42:43: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='bridge001') order by ts desc limit 1
+INFO:root:30/11/2021 18:42:44: Resultado: 1638308517005
+INFO:root:30/11/2021 18:42:44: SELECT dbl_v FROM ts_kv WHERE  ts=1638308517005 AND entity_id = (select id from device where name='bridge001')
+INFO:root:30/11/2021 18:42:45: Resultado: 0.0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:46: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:46: Status Code200
+INFO:root:30/11/2021 18:42:46: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater3') order by ts desc limit 1
+INFO:root:30/11/2021 18:42:47: Resultado: 1638286321988
+INFO:root:30/11/2021 18:42:47: SELECT dbl_v FROM ts_kv WHERE  ts=1638286321988 AND entity_id = (select id from device where name='LabPrater3')
+INFO:root:30/11/2021 18:42:48: Resultado: 16.0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:48: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 18:42:49: Status Code200
+INFO:root:30/11/2021 19:06:17: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater1') order by ts desc limit 1
+INFO:root:30/11/2021 19:06:18: Resultado: 1638308265824
+INFO:root:30/11/2021 19:06:18: SELECT dbl_v FROM ts_kv WHERE  ts=1638308265824 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater1
+INFO:root:30/11/2021 19:06:19: Resultado: 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:19: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:20: Status Code200
+INFO:root:30/11/2021 19:06:20: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='bridge001') order by ts desc limit 1
+INFO:root:30/11/2021 19:06:21: Resultado: 1638309957618
+INFO:root:30/11/2021 19:06:21: SELECT dbl_v FROM ts_kv WHERE  ts=1638309957618 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='bridge001
+INFO:root:30/11/2021 19:06:22: Resultado: 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:22: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:23: Status Code200
+INFO:root:30/11/2021 19:06:23: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater3') order by ts desc limit 1
+INFO:root:30/11/2021 19:06:24: Resultado: 1638286321988
+INFO:root:30/11/2021 19:06:24: SELECT dbl_v FROM ts_kv WHERE  ts=1638286321988 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='LabPrater3
+INFO:root:30/11/2021 19:06:25: Resultado: 0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): mes.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://mes.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:25: Status Code200
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
+DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
+INFO:root:30/11/2021 19:06:25: Status Code200
