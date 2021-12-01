@@ -69,7 +69,7 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 ts=result_det
 
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName
+sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
@@ -97,7 +97,7 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 ts=result_det
 
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+ "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName
+sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+ "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
@@ -122,7 +122,7 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 ts=result_det
 
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName
+sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
