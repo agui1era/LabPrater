@@ -95,7 +95,7 @@ headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
 x = {
   "data": [
     {"id": "marconi12","produccion":produccion,"ts":ts},
-    {"id": "marconi12","acmulado":acumulado,"ts":ts}
+    {"id": "marconi12","acumulado":acumulado,"ts":ts}
   ]
 }
 
@@ -128,7 +128,7 @@ acumulado=result_det
 x = {
   "data": [
     {"id": "marconi3","produccion":produccion,"ts":ts},
-    {"id": "marconi3","acmulado":acumulado,"ts":ts}
+    {"id": "marconi3","acumulado":acumulado,"ts":ts}
   ]
 }
 response = requests.post(url, headers=headers, json=x)
@@ -160,7 +160,7 @@ acumulado=result_det
 x = {
   "data": [
     {"id": "envasadora","produccion":produccion,"ts":ts},
-    {"id": "envasadora","acmulado":acumulado,"ts":ts}
+    {"id": "envasadora","acumulado":acumulado,"ts":ts}
   ]
 }
 response = requests.post(url, headers=headers, json=x)
