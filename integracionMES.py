@@ -61,6 +61,16 @@ def write_log(cadena):
     return 0
 
 
+#Tiemnpos de producción del dia
+end_date = datetime.datetime.now()
+str_end_date=end_date.strftime("%d/%m/%Y %H:%M:%S")
+str_begin_date=end_date.strftime("%d/%m/%Y 0:00:00")
+print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+print("Tiempos de la producción diaria")
+print(str_begin_date)
+print(str_end_date)
+
+
 sensorName='LabPrater1'
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
@@ -75,11 +85,17 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 produccion=result_det
 
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+write_log("Total acumulado: "+result_det)
+acumulado=result_det
 
 headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
 x = {
   "data": [
-    {"id": "marconi12","produccion":produccion,"ts":ts}
+    {"id": "marconi12","produccion":produccion,"ts":ts},
+    {"id": "marconi12","acmulado":acumulado,"ts":ts}
   ]
 }
 
@@ -103,9 +119,16 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 produccion=result_det
 
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+write_log("Total acumulado: "+result_det)
+acumulado=result_det
+
 x = {
   "data": [
-    {"id": "marconi3","produccion":produccion,"ts":ts}
+    {"id": "marconi3","produccion":produccion,"ts":ts},
+    {"id": "marconi3","acmulado":acumulado,"ts":ts}
   ]
 }
 response = requests.post(url, headers=headers, json=x)
@@ -128,9 +151,16 @@ result_det=str(getDB(sql_str_det))
 write_log("Resultado: "+result_det)
 produccion=result_det
 
+sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+print(sql_str_det)
+result_det=str(getDB(sql_str_det))
+write_log("Total acumulado: "+result_det)
+acumulado=result_det
+
 x = {
   "data": [
-    {"id": "envasadora","produccion":produccion,"ts":ts}
+    {"id": "envasadora","produccion":produccion,"ts":ts},
+    {"id": "envasadora","acmulado":acumulado,"ts":ts}
   ]
 }
 response = requests.post(url, headers=headers, json=x)
