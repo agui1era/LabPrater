@@ -71,7 +71,11 @@ print(str_begin_date)
 print(str_end_date)
 
 
-sensorName='LabPrater1'
+sensorName='Labprater1'
+write_log('')
+write_log(sensorName)
+write_log('')
+
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
 write_log(sql_str_det)
@@ -82,7 +86,7 @@ ts=result_det
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
+write_log("Resultado velocidad: "+result_det)
 produccion=result_det
 
 sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
@@ -105,6 +109,10 @@ write_log("Status Code"+ str(response.status_code))
 
 
 sensorName='bridge001'
+write_log('')
+write_log(sensorName)
+write_log('')
+
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
 write_log(sql_str_det)
@@ -115,7 +123,7 @@ ts=result_det
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+ "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
+write_log("Resultado velocidad: "+result_det)
 produccion=result_det
 
 sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
@@ -135,7 +143,10 @@ response = requests.post(urlProd, headers=headers, json=x)
 write_log("Status Code"+ str(response.status_code))
 
 
-sensorName='LabPrater3'
+sensorName='Labprater3'
+write_log('')
+write_log(sensorName)
+write_log('')
 
 sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
 write_log(sql_str_det)
@@ -146,7 +157,7 @@ ts=result_det
 sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
 write_log(sql_str_det)
 result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
+write_log("Resultado velocidad: "+result_det)
 produccion=result_det
 
 sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
