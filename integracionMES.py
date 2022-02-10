@@ -4,27 +4,38 @@ import math
 import psycopg2
 import logging
 from dateutil.relativedelta import relativedelta
+from array import array
 
 url = "http://mes.igromi.com:33331/sensor"
 urlProd="http://labprater.igromi.com:33331/sensor"
-varName ='contador'
+
+
+
+
+varName ="contador"
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
-logFile='mes.log'
+logFile="mes.log"
+user="postgres"
+password="imagina12"
+host="iot.igromi.com"
+port= "5432"
+database = "thingsboard"
 
 def getDB(sql_query):
+    list_records=[]
     try:       
-        connection = psycopg2.connect(user = "postgres",
-                                        password = "imagina12",
-                                        host = "iot.igromi.com",
-                                        port = "5432",
-                                        database = "thingsboard")
+        connection = psycopg2.connect(  user = user ,
+                                        password = password,
+                                        host = host,
+                                        port = port,
+                                        database = database)
         cursor = connection.cursor()
         postgreSQL_select_Query = sql_query
 
         cursor.execute(postgreSQL_select_Query)
         bd_records = cursor.fetchall()
         for row in bd_records:
-            i=1
+            list_records.append(row)
 
     except (Exception, psycopg2.Error) as error:
         print("Error fetching data from PostgreSQL table", error)
@@ -35,7 +46,7 @@ def getDB(sql_query):
             connection.close()
     try:
        
-       out_query=row[0]
+       out_query=list_records
 
     except (Exception, psycopg2.Error) as error:
        out_query=0
@@ -71,107 +82,63 @@ print(str_begin_date)
 print(str_end_date)
 
 
-sensorName='Labprater1'
-write_log('')
-write_log(sensorName)
-write_log('')
 
-
-sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
-ts=result_det
-
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado velocidad: "+result_det)
-produccion=result_det
-
-sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+sql_str_det="select name from device where name like 'MES%'"
 print(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Total acumulado: "+result_det)
-acumulado=result_det
-
-headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
-x = {
-  "data": [
-    {"id": "marconi12","produccion":produccion,"acumulado":acumulado,"ts":ts}
-  ]
-}
-
-response = requests.post(url, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
-response = requests.post(urlProd, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
+result_det=getDB(sql_str_det)
 
 
-sensorName='bridge001'
-write_log('')
-write_log(sensorName)
-write_log('')
+for row in result_det:
+
+  cadena=str(row)
+  cadena=cadena.replace("('","")
+  cadena=cadena.replace("',)","")
+  write_log("Resultado: "+cadena)
+
+  sensorName=cadena
+  write_log("")
+  write_log(sensorName)
+  write_log("")
 
 
-sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
-ts=result_det
+  sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
+  write_log(sql_str_det)
+  result_det=getDB(sql_str_det)
+  cadena=str(result_det[0])
+  cadena=cadena.replace("(","")
+  cadena=cadena.replace(",)","")
+  write_log("ts: "+cadena)
+  ts=cadena
 
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+ "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado velocidad: "+result_det)
-produccion=result_det
+  sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+  write_log(sql_str_det)
+  result_det=getDB(sql_str_det)
+  cadena=str(result_det[0])
+  cadena=cadena.replace("(","")
+  cadena=cadena.replace(",)","")
+  write_log("Produccion: " +cadena)
+  produccion=cadena
 
-sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
-print(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Total acumulado: "+result_det)
-acumulado=result_det
+  sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
+  print(sql_str_det)
+  result_det=getDB(sql_str_det)
+  cadena=str(result_det[0])
+  cadena=cadena.replace("(","")
+  cadena=cadena.replace(",)","")
+  write_log("Acumulado: " +cadena)
+  acumulado=cadena
 
-x = {
-  "data": [
-    {"id": "marconi3","produccion":produccion,"acumulado":acumulado,"ts":ts}
-  ]
-}
-response = requests.post(url, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
-response = requests.post(urlProd, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
+  headers = {"Authorization": "Basic "+token, "Content-Type":"application/json"}
+  x = {
+    "data": [
+      {"id":sensorName,"produccion":produccion,"acumulado":acumulado,"ts":ts}
+    ]
+  }
+
+  response = requests.post(url, headers=headers, json=x)
+  write_log("Status Code"+ str(response.status_code))
+  response = requests.post(urlProd, headers=headers, json=x)
+  write_log("Status Code"+ str(response.status_code))
 
 
-sensorName='Labprater3'
-write_log('')
-write_log(sensorName)
-write_log('')
 
-sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado: "+result_det)
-ts=result_det
-
-sql_str_det="SELECT dbl_v FROM ts_kv WHERE  ts="+ts+" AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
-write_log(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Resultado velocidad: "+result_det)
-produccion=result_det
-
-sql_str_det="SELECT SUM(dbl_v) FROM ts_kv WHERE ts >= "+ date_to_milis(str_begin_date)+ " AND ts <="+date_to_milis(str_end_date) + " AND "+  "key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"')"
-print(sql_str_det)
-result_det=str(getDB(sql_str_det))
-write_log("Total acumulado: "+result_det)
-acumulado=result_det
-
-x = {
-  "data": [
-    {"id": "envasadora","produccion":produccion,"acumulado":acumulado,"ts":ts}
-  ]
-}
-response = requests.post(url, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
-response = requests.post(urlProd, headers=headers, json=x)
-write_log("Status Code"+ str(response.status_code))
