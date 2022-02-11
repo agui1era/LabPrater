@@ -20,6 +20,7 @@ password="imagina12"
 host="iot.igromi.com"
 port= "5432"
 database = "thingsboard"
+prefijo="LBP"
 
 def getDB(sql_query):
     list_records=[]
@@ -83,7 +84,7 @@ print(str_end_date)
 
 
 
-sql_str_det="select name from device where name like 'MES%'"
+sql_str_det="select name from device where name like 'MES_"+prefijo+"%'"
 print(sql_str_det)
 result_det=getDB(sql_str_det)
 
