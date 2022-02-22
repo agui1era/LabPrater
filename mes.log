@@ -2348,3 +2348,216 @@ INFO:root:11/02/2022 13:49:41: Status Code200
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): labprater.igromi.com:33331
 DEBUG:urllib3.connectionpool:http://labprater.igromi.com:33331 "POST /sensor HTTP/1.1" 200 0
 INFO:root:11/02/2022 13:49:41: Status Code200
+INFO:root:22/02/2022 10:30:58: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:30:58: 
+INFO:root:22/02/2022 10:30:58: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:30:58: 
+INFO:root:22/02/2022 10:30:58: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 10:30:59: ts: 1645536646087
+INFO:root:22/02/2022 10:30:59: SELECT dbl_v FROM ts_kv WHERE  ts=1645536646087 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 10:31:00: Produccion: 0.0
+INFO:root:22/02/2022 10:31:01: Acumulado: 6.0
+INFO:root:22/02/2022 10:31:22: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:31:22: 
+INFO:root:22/02/2022 10:31:22: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:31:22: 
+INFO:root:22/02/2022 10:31:22: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 10:31:23: ts: 1645536646087
+INFO:root:22/02/2022 10:31:23: SELECT dbl_v FROM ts_kv WHERE  ts=1645536646087 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 10:31:24: Produccion: 0.0
+INFO:root:22/02/2022 10:31:26: Acumulado: 6.0
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:http://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 400 264
+INFO:root:22/02/2022 10:31:26: Status Code400
+INFO:root:22/02/2022 10:32:16: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:32:16: 
+INFO:root:22/02/2022 10:32:16: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:32:16: 
+INFO:root:22/02/2022 10:32:16: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 10:32:17: ts: 1645536706058
+INFO:root:22/02/2022 10:32:17: SELECT dbl_v FROM ts_kv WHERE  ts=1645536706058 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 10:32:18: Produccion: 0.0
+INFO:root:22/02/2022 10:32:19: Acumulado: 6.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 10:32:19: Status Code200
+INFO:root:22/02/2022 10:33:10: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:33:10: 
+INFO:root:22/02/2022 10:33:10: MES_EOV_contadorDemo
+INFO:root:22/02/2022 10:33:10: 
+INFO:root:22/02/2022 10:33:10: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 10:33:12: ts: 1645536766058
+INFO:root:22/02/2022 10:33:12: SELECT dbl_v FROM ts_kv WHERE  ts=1645536766058 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 10:33:13: Produccion: 0.0
+INFO:root:22/02/2022 10:33:14: Acumulado: 6.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 10:33:14: Status Code200
+INFO:root:22/02/2022 11:50:43: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 11:50:43: 
+INFO:root:22/02/2022 11:50:43: MES_EOV_contadorDemo
+INFO:root:22/02/2022 11:50:43: 
+INFO:root:22/02/2022 11:50:43: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 11:50:44: ts: 1645541386053
+INFO:root:22/02/2022 11:50:44: SELECT dbl_v FROM ts_kv WHERE  ts=1645541386053 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 11:50:45: Produccion: 0.0
+INFO:root:22/02/2022 11:50:46: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 11:50:46: Status Code200
+INFO:root:22/02/2022 12:55:46: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 12:55:46: 
+INFO:root:22/02/2022 12:55:46: MES_EOV_contadorDemo
+INFO:root:22/02/2022 12:55:46: 
+INFO:root:22/02/2022 12:55:46: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 12:55:47: ts: 1645545346050
+INFO:root:22/02/2022 12:55:47: SELECT dbl_v FROM ts_kv WHERE  ts=1645545346050 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 12:55:48: Produccion: 0.0
+INFO:root:22/02/2022 12:55:49: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 12:55:49: Status Code200
+INFO:root:22/02/2022 14:16:41: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:16:41: 
+INFO:root:22/02/2022 14:16:41: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:16:41: 
+INFO:root:22/02/2022 14:16:41: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 14:16:42: ts: 1645550146082
+INFO:root:22/02/2022 14:16:42: SELECT dbl_v FROM ts_kv WHERE  ts=1645550146082 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 14:16:43: Produccion: 0.0
+INFO:root:22/02/2022 14:16:44: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 14:16:44: Status Code200
+INFO:root:22/02/2022 14:17:36: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:17:36: 
+INFO:root:22/02/2022 14:17:36: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:17:36: 
+INFO:root:22/02/2022 14:17:36: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 14:17:38: ts: 1645550206043
+INFO:root:22/02/2022 14:17:38: SELECT dbl_v FROM ts_kv WHERE  ts=1645550206043 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 14:17:39: Produccion: 0.0
+INFO:root:22/02/2022 14:17:40: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 14:17:40: Status Code200
+INFO:root:22/02/2022 14:20:39: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:20:39: 
+INFO:root:22/02/2022 14:20:39: MES_EOV_contadorDemo
+INFO:root:22/02/2022 14:20:39: 
+INFO:root:22/02/2022 14:20:39: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 14:20:40: ts: 1645550386040
+INFO:root:22/02/2022 14:20:40: SELECT dbl_v FROM ts_kv WHERE  ts=1645550386040 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 14:20:41: Produccion: 0.0
+INFO:root:22/02/2022 14:20:42: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 14:20:42: Status Code200
+INFO:root:22/02/2022 15:39:28: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:39:28: 
+INFO:root:22/02/2022 15:39:28: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:39:28: 
+INFO:root:22/02/2022 15:39:28: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:39:29: ts: 1645555126034
+INFO:root:22/02/2022 15:39:29: SELECT dbl_v FROM ts_kv WHERE  ts=1645555126034 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:39:30: Produccion: 0.0
+INFO:root:22/02/2022 15:39:31: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:39:32: Status Code200
+INFO:root:22/02/2022 15:40:16: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:40:16: 
+INFO:root:22/02/2022 15:40:16: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:40:16: 
+INFO:root:22/02/2022 15:40:16: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:40:17: ts: 1645555186034
+INFO:root:22/02/2022 15:40:17: SELECT dbl_v FROM ts_kv WHERE  ts=1645555186034 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:40:18: Produccion: 0.0
+INFO:root:22/02/2022 15:40:19: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:40:19: Status Code200
+INFO:root:22/02/2022 15:46:26: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:46:26: 
+INFO:root:22/02/2022 15:46:26: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:46:26: 
+INFO:root:22/02/2022 15:46:26: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:46:27: ts: 1645555549026
+INFO:root:22/02/2022 15:46:27: SELECT dbl_v FROM ts_kv WHERE  ts=1645555549026 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:46:28: Produccion: 0.0
+INFO:root:22/02/2022 15:46:29: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:46:29: Status Code200
+INFO:root:22/02/2022 15:46:59: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:46:59: 
+INFO:root:22/02/2022 15:46:59: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:46:59: 
+INFO:root:22/02/2022 15:46:59: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:47:00: ts: 1645555609008
+INFO:root:22/02/2022 15:47:00: SELECT dbl_v FROM ts_kv WHERE  ts=1645555609008 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:47:01: Produccion: 0.0
+INFO:root:22/02/2022 15:47:02: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:47:02: Status Code200
+INFO:root:22/02/2022 15:48:56: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:48:56: 
+INFO:root:22/02/2022 15:48:56: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:48:56: 
+INFO:root:22/02/2022 15:48:56: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:48:57: ts: 1645555729005
+INFO:root:22/02/2022 15:48:57: SELECT dbl_v FROM ts_kv WHERE  ts=1645555729005 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:48:59: Produccion: 0.0
+INFO:root:22/02/2022 15:49:00: Acumulado: 7.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:49:00: Status Code200
+INFO:root:22/02/2022 15:53:33: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:53:33: 
+INFO:root:22/02/2022 15:53:33: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:53:33: 
+INFO:root:22/02/2022 15:53:33: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:53:35: ts: 1645555969005
+INFO:root:22/02/2022 15:53:35: SELECT dbl_v FROM ts_kv WHERE  ts=1645555969005 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:53:36: Produccion: 0.0
+INFO:root:22/02/2022 15:53:37: Acumulado: 13.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:53:37: Status Code200
+INFO:root:22/02/2022 15:53:48: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:53:48: 
+INFO:root:22/02/2022 15:53:48: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:53:48: 
+INFO:root:22/02/2022 15:53:48: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:53:49: ts: 1645556029005
+INFO:root:22/02/2022 15:53:49: SELECT dbl_v FROM ts_kv WHERE  ts=1645556029005 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:53:50: Produccion: 0.0
+INFO:root:22/02/2022 15:53:51: Acumulado: 13.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:53:52: Status Code200
+INFO:root:22/02/2022 15:57:22: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:57:22: 
+INFO:root:22/02/2022 15:57:22: MES_EOV_contadorDemo
+INFO:root:22/02/2022 15:57:22: 
+INFO:root:22/02/2022 15:57:22: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 15:57:23: ts: 1645556149007
+INFO:root:22/02/2022 15:57:23: SELECT dbl_v FROM ts_kv WHERE  ts=1645556149007 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 15:57:25: Produccion: 0.0
+INFO:root:22/02/2022 15:57:26: Acumulado: 13.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 15:57:26: Status Code200
+INFO:root:22/02/2022 16:00:17: Resultado: MES_EOV_contadorDemo
+INFO:root:22/02/2022 16:00:17: 
+INFO:root:22/02/2022 16:00:17: MES_EOV_contadorDemo
+INFO:root:22/02/2022 16:00:17: 
+INFO:root:22/02/2022 16:00:17: SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo') order by ts desc limit 1
+INFO:root:22/02/2022 16:00:18: ts: 1645556149007
+INFO:root:22/02/2022 16:00:18: SELECT dbl_v FROM ts_kv WHERE  ts=1645556149007 AND key=(select key_id from ts_kv_dictionary where key ='contador') AND  entity_id = (select id from device where name='MES_EOV_contadorDemo')
+INFO:root:22/02/2022 16:00:19: Produccion: 0.0
+INFO:root:22/02/2022 16:00:20: Acumulado: 13.0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): eov.igromi.com:9999
+DEBUG:urllib3.connectionpool:https://eov.igromi.com:9999 "POST /sensor HTTP/1.1" 200 None
+INFO:root:22/02/2022 16:00:20: Status Code200

@@ -6,12 +6,7 @@ import logging
 from dateutil.relativedelta import relativedelta
 from array import array
 
-url = "https://mes.igromi.com:9999/sensor"
-urlProd="https://labprater.igromi.com:9999/sensor"
-
-
-
-
+urlProd="https://eov.igromi.com:9999/sensor"
 varName ="contador"
 token="c29mdHdhcmVNRVM6M0hVWkJhZlVWV0YzNmtVZQ=="
 logFile="mes.log"
@@ -20,7 +15,7 @@ password="imagina12"
 host="iot.igromi.com"
 port= "5432"
 database = "thingsboard"
-prefijo="LBP"
+prefijo="MES_EOV"
 
 def getDB(sql_query):
     list_records=[]
@@ -136,8 +131,6 @@ for row in result_det:
     ]
   }
 
-  response = requests.post(url, headers=headers, json=x)
-  write_log("Status Code"+ str(response.status_code))
   response = requests.post(urlProd, headers=headers, json=x)
   write_log("Status Code"+ str(response.status_code))
 
