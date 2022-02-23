@@ -6,7 +6,7 @@ import logging
 from dateutil.relativedelta import relativedelta
 from array import array
 
-url = "https://mes.igromi.com:9999/sensor"
+url = "https://mesdev.igromi.com:9999/sensor"
 urlProd="https://labprater.igromi.com:9999/sensor"
 
 
@@ -20,7 +20,7 @@ password="imagina12"
 host="iot.igromi.com"
 port= "5432"
 database = "thingsboard"
-prefijo="LBP"
+prefijo="MES_LBP"
 
 def getDB(sql_query):
     list_records=[]
@@ -100,6 +100,9 @@ for row in result_det:
   write_log("")
   write_log(sensorName)
   write_log("")
+
+  if sensorName == "MES_LBP_contador004_marconi12":
+      varName="contador3"
 
 
   sql_str_det="SELECT ts FROM ts_kv WHERE  key=(select key_id from ts_kv_dictionary where key ='"+varName+"') AND  entity_id = (select id from device where name='"+sensorName+"') order by ts desc limit 1"
